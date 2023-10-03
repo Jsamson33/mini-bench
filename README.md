@@ -20,25 +20,29 @@ Etant bien occupé, je dois aller vite. Du coup, mon plan est le suivant:
 
 ### Trouver un OAS
     
-    [ ] trouver un OAS 
+- [ ] trouver un OAS 
     
 ### Generer les applications packagées
 
-    [ ] spring (une reference nominale on va dire)
-    [ ] spring kotlin
-    [ ] quarkus Kotlin
-    [ ] Ktor Kotlin
+- [ ] spring (une reference nominale on va dire)
+- [ ] spring kotlin
+- [ ] quarkus Kotlin
+- [ ] Ktor Kotlin
 
 ### Generer les applications natives
 
-    [ ] spring (une reference nominale on va dire)
-    [ ] spring kotlin
-    [ ] quarkus Kotlin
-    [ ] Ktor Kotlin
+- [ ] spring 
+- [ ] spring kotlin
+- [ ] quarkus Kotlin
+- [ ] Ktor Kotlin
 
-### Performances + resultats K6
+### Performances + résultats K6
 
-    [ ] spring (une reference nominale on va dire)
-    [ ] spring kotlin
-    [ ] quarkus Kotlin
-    [ ] Ktor Kotlin 
+- [ ] spring 
+- [ ] spring kotlin
+- [ ] quarkus Kotlin
+- [ ] Ktor Kotlin 
+
+
+
+ 
