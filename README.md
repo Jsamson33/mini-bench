@@ -1,22 +1,27 @@
 # mini-bench
 
-## Why
+# Why
 
-Je commence une nouvelle mission sur de nouvelles technos: Kotlin & Ktor
+Qui dit nouvelle mission dit souvent nouvelles technos. Pour ma part, cette fois-ci ce sera Kotlin & Ktor.
 
-Ayant l'habitude de Java/spring/springBoot, il faut que je me fasse un avis rapide.
+Ayant l'habitude de Java/spring/springBoot, je veux me faire un avis rapide.
 
-Je souhaitais aussi faire du Quarkus alors pourquoi ne pas tester aussi, et puis tant qu'on y est, pourquoi ne pas tester Quarkus/kotlin. Le tout en mode app packagé, mais aussi native
+Je souhaitais aussi faire du Quarkus alors pourquoi ne pas tester aussi, et puis tant qu'on y est, pourquoi ne pas tester Quarkus/kotlin. Le tout en mode app packagé, mais aussi native.
 
-l'idée est de tester l'expressivité du langage/framework, la rapidité de mise en oeuvre mais aussi avoir une idée des "performances" (on discutera de ce sujet plus loin)
+Bon alors, comme on dit par chez nous, "y a plus qu'à"
 
-Etant bien occupé, je dois aller vite. Du coup, mon plan est le suivant:
+L'idée est de tester l'expressivité du langage/framework, la rapidité de mise en œuvre mais aussi avoir une idée des "performances" (on discutera de ce sujet plus loin).
+
+Étant bien occupé, je dois aller vite. Du coup, mon plan est le suivant :
 
 - Un OAS valide qui ai du sens
-- ensuite on va generer tout les stubs des applications via un petit outil bien simpa
-- faire les tests de perfs avec K6 (parceque c'est cool d'avoir les dashboard grafana en temps réel) et que je sais m'en servir, ce qui m'evitera de la charge supplémentaire :)
+- Ensuite on va générer tout les stubs des applications via un petit outil bien sympa
+- réaliser les tests de performances avec K6 (parce que c'est cool d'avoir les dashboards Grafana en temps réel) et que je sais m'en servir, ce qui m'évitera de la charge supplémentaire!
 
-## steps
+
+
+
+## Steps
 
 ### Trouver un OAS
     
