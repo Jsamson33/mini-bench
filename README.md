@@ -42,15 +42,75 @@ Bref on va faire vite.
 
 On va se servir de l'image docker pour générer les applications. mais le resultat serait le même avec le jar ou le nodejs. 
 
-#### Généré le stub spring
+#### Générer le stub *java-spring*
 
 ```shell 
 # copié de https://github.com/OpenAPITools/openapi-generator#16---docker
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
     -g spring \
-    -o /local/out/spring
+    -o /local/out/java-spring
 ```
+
+#### Générer le stub *java-vertx*
+
+```shell 
+# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+    -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
+    -g java-vertx \
+    -o /local/out/java-vertx
+```
+
+#### Générer le stub *kotlin-server*
+
+```shell 
+# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+    -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
+    -g kotlin-server \
+    -o /local/out/kotlin-server
+```
+
+#### Générer le stub *kotlin-vertx*
+
+```shell 
+# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+    -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
+    -g kotlin-vertx \
+    -o /local/out/kotlin-vertx
+```
+
+#### Générer le stub *kotlin-spring*
+
+```shell 
+# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+    -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
+    -g kotlin-spring \
+    -o /local/out/kotlin-spring
+```
+
+
+#### Générer le stub *java-quarkus* (ie: jaxrs-spec with library quarkus)
+
+```shell 
+# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+    -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
+    -g jaxrs-spec --library=quarkus \
+    -o /local/out/java-quarkus
+```
+
+
+#### Générer le stub *kotlin-quarkus*
+
+Manquant... le faire à la main ? :
+1) init un projet quarkus en activant l'extension kotlin
+2) ajouter les DTO du projet kotlin-spring
+3) coder à la main.
+4) faire l'implémentation du generator kotlin-quarkus et proposer la PR :) 
 
 
 ## What
@@ -65,24 +125,33 @@ docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     
 ### Generer les applications packagées
 
-- [ ] spring (une reference nominale on va dire)
-- [ ] spring kotlin
-- [ ] quarkus Kotlin
-- [ ] Ktor Kotlin
+- [x] java-spring 
+- [x] java-vertx
+- [x] java-quarkus
+- [x] spring kotlin
+- [x] Ktor Kotlin (kotlin-server)
+- [ ] quarkus Kotlin (TODO)
 
 ### Generer les applications natives
 
-- [ ] spring 
-- [ ] spring kotlin
-- [ ] quarkus Kotlin
-- [ ] Ktor Kotlin
+- [ ] java-quarkus
+- [ ] java-spring
+- [ ] java-vertx
+- [ ] Ktor Kotlin (kotlin-server)
+- [ ] kotlin-spring
+- [ ] Kotlin-vertx
+- [ ] Kotlin-quarkus
+
 
 ### Performances + résultats K6
 
-- [ ] spring 
-- [ ] spring kotlin
-- [ ] quarkus Kotlin
-- [ ] Ktor Kotlin 
+- [ ] java-quarkus
+- [ ] java-spring
+- [ ] java-vertx
+- [ ] Ktor Kotlin (kotlin-server)
+- [ ] kotlin-spring
+- [ ] Kotlin-vertx
+- [ ] Kotlin-quarkus
 
 
 
