@@ -7,6 +7,24 @@ info:
 servers:
 - url: /
 paths:
+  origin:
+    get:
+      tags:
+      - Origin
+      operationId: getOrigin
+      responses:
+        "200":
+          description: ok
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  origin:
+                    type: string
+                    example: http://localhost:8080
+      x-swagger-router-controller: Origin
+
   /devices:
     get:
       tags:

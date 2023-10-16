@@ -27,6 +27,7 @@ L'idée est de tester l'expressivité du langage/framework, la rapidité de mise
 
 
 ## How
+
 ### 1) Trouver un OAS valide qui ai du sens
 
 Bon là j'ai un peu cherché sur le net, je suis rapidement tombé sur ça [public-apis](https://github.com/public-apis/public-apis) qui est une liste de plein d'APIs publiques. Pas exactement ce que je cherche, mais plein d'idée pour démarrer des applications.
@@ -42,64 +43,61 @@ Bref on va faire vite.
 
 On va se servir de l'image docker pour générer les applications. mais le resultat serait le même avec le jar ou le nodejs. 
 
-#### Générer le stub *java-spring*
+#### Générer le stub *java-spring* [Running]
+
+copié de https://github.com/OpenAPITools/openapi-generator#16---docker
 
 ```shell 
-# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
     -g spring \
     -o /local/out/java-spring
 ```
 
-#### Générer le stub *java-vertx*
+#### Générer le stub *java-vertx* [Running]
 
 ```shell 
-# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
     -g java-vertx \
     -o /local/out/java-vertx
 ```
 
-#### Générer le stub *kotlin-server*
+#### Générer le stub *kotlin-server* [KO gradle/kotlin versions]
 
 ```shell 
-# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
     -g kotlin-server \
     -o /local/out/kotlin-server
 ```
 
-#### Générer le stub *kotlin-vertx*
+
+#### Générer le stub *kotlin-spring* 
 
 ```shell 
-# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
-docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
-    -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
-    -g kotlin-vertx \
-    -o /local/out/kotlin-vertx
-```
-
-#### Générer le stub *kotlin-spring*
-
-```shell 
-# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
     -g kotlin-spring \
     -o /local/out/kotlin-spring
 ```
 
+#### Générer le stub *kotlin-vertx*
+
+```shell 
+docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
+    -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
+    -g kotlin-vertx \
+    -o /local/out/kotlin-vertx
+```
 
 #### Générer le stub *java-quarkus* (ie: jaxrs-spec with library quarkus)
 
 ```shell 
-# copié de https://github.com/OpenAPITools/openapi-generator#16---docker
+# attention à la subtilité: quarkus est une librairie de jaxrs-spec
 docker run --rm -v "${PWD}:/local" openapitools/openapi-generator-cli generate \
     -i https://raw.githubusercontent.com/Jsamson33/mini-bench/main/oas/home-iot-api-1.0.0.yaml \
-    -g jaxrs-spec --library=quarkus \
+    -g jaxrs-spec --library=quarkus \ 
     -o /local/out/java-quarkus
 ```
 
@@ -114,6 +112,19 @@ Manquant... le faire à la main ? :
 
 
 ## What
+
+Bon le premier test est concluant, java-spring encaisse jusqu'a 8000 VU sans broncher.
+Le soucis viens des autres generateur de stub: il sont dans des versions plutot anciennes (gradle 7, java8, kotlin 1.9) 
+bref pas vraiment à mon gout pour ce bench.
+Ce qui est interressant c'est que les pojos et autres controlleurs sont les mêmes, donc on peut les réutiliser.
+
+
+
+Conclusions
+ - pour les servers stubs, il faut les mettre à jours si on souhaite s'en servir en production
+ - cela génére quand meme les DTO et les controlleurs ce qui est un gain de temps non négligeable pour un POC ou un starter
+ - On peut comparer et se faire une idée de l'expressivité des differents frameworks 
+
 
 
 
@@ -145,8 +156,14 @@ Manquant... le faire à la main ? :
 
 ### Performances + résultats K6
 
+un petit `docker compose up -d` sur le docker-compose.yml de k6 et on lance les tests via la commande : 
+
+```shell 
+docker run --rm --network host -v /$(pwd)/scripts:/scripts -i grafana/k6 run /scripts/run.js --insecure-skip-tls-verify -e K6_OUT=influxdb=http://localhost:8086/k6
+```
+
+- [X] java-spring
 - [ ] java-quarkus
-- [ ] java-spring
 - [ ] java-vertx
 - [ ] Ktor Kotlin (kotlin-server)
 - [ ] kotlin-spring
